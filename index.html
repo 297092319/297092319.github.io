@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -49,6 +49,32 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -72,7 +98,7 @@
 
 
 
-  <meta name="keywords" content="WEB前端开发,WEB技术交流,项目分享,经验总结" />
+  <meta name="keywords" content="WEB开发,WEB技术交流,项目分享,经验总结" />
 
 
 
@@ -84,13 +110,16 @@
 
 
 <meta name="description" content="专注WEB开发的技术博客！">
-<meta name="keywords" content="WEB前端开发,WEB技术交流,项目分享,经验总结">
 <meta property="og:type" content="website">
 <meta property="og:title" content="司徒大官人">
 <meta property="og:url" content="&#x2F;&#x2F;index.html">
 <meta property="og:site_name" content="司徒大官人">
 <meta property="og:description" content="专注WEB开发的技术博客！">
-<meta property="og:locale" content="zh-Hans">
+<meta property="article:author" content="司徒大官人">
+<meta property="article:tag" content="WEB开发">
+<meta property="article:tag" content="WEB技术交流">
+<meta property="article:tag" content="项目分享">
+<meta property="article:tag" content="经验总结">
 <meta name="twitter:card" content="summary">
 
 
@@ -99,7 +128,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -137,7 +166,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 4.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -163,7 +192,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">热爱网站建设的前端设计工作者</p>
+        <p class="site-subtitle">热爱WEB建设的设计爱好者</p>
       
   </div>
 
@@ -256,7 +285,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -423,7 +452,7 @@
         
           
           基础环境搭建安装hexo电脑中已经安装了git和node.js，直接随便找个文件夹在 git bash 中执行 npm install -g hexo-cli，这一步是安装hexo。检测hexo是否成功安装，在 git bash 执行 hexo v 看到hexo的版本号就说明安装成功了。
-之后创建本
+之后创建本地hexo仓库，hexo init &lt;folder&gt; 也可以cd到目标目录，执行hexo init（这里用blog文件夹做说明 hexo init &lt;blog&gt; 或者新建一个b
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -582,8 +611,13 @@
         
           
           1.httpd.conf文件，搜索关键字：onlineoffline tag - don’t remove，将 Require local 修改成 Require all granted；
-2.httpd-Vhosts.conf 文件，同样将Require local 修改成 Require all
-          ...
+2.httpd-Vhosts.conf 文件，同样将Require local 修改成 Require all granted；（这个是大多数博客没有写的）
+3.重启Apache；
+4.重点！重点！重点！  关闭防火墙.
+
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/01/wamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%A9%E5%B1%80%E5%9F%9F%E7%BD%91%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE,403forbidden%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/#more" rel="contents">
@@ -741,7 +775,7 @@
         
           
           随着html5Canvas元素的推出呢，现在的浏览器具备了更强大的绘制图像的功能，甚至canvas已经可以用来制作大型网页游戏，关于Canvas的js库也越来越多，有动画库还有图表库比如Echart等等。今天我就要给大家推荐两款非常炫酷的Canvas粒子特效，let’s hit the road!
-
+Particleground粒子背景articleground是一款时髦的jquery粒子系统背景插件，PC端可通过鼠标控制视差效果，而移动端可用重力感应控制，Particleground可以运行在任
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1212,7 +1246,8 @@
         
           
           JSON的历史Douglas Crockford 是JSON的创造者，也是JavaScript：the good part的作者。
-JSON（JavaScript Object Notation）是一种由Douglas Crockford 构想和设计、轻量级的数据交换语言，该语言以易于让人阅读的文字
+JSON（JavaScript Object Notation）是一种由Douglas Crockford 构想和设计、轻量级的数据交换语言，该语言以易于让人阅读的文字为基础，用来传输由属性值或者序列性的值组成的数据对象。尽管JSON是JavaScript的一个子集，但JSON是独立于语言的文本格式，并且采用了类似于C语言家族的一些习惯。
+JSON格式是1999年《
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1527,7 +1562,9 @@ JSON（JavaScript Object Notation）是一种由Douglas Crockford 构想和设�
         
           
           《高性能JavaScript》笔记第一章  加载和执行脚本位置由于脚本阻塞的存在，建议将所有&lt;script&gt;标签尽可能放到 &lt;body&gt; 标签的底部，以减少对整个页面下载的影响。
-组织脚本减少脚本的HTTP请求数量，你可以将脚本合并。文件合并的工作可以通过离线的打包工具或者类
+组织脚本减少脚本的HTTP请求数量，你可以将脚本合并。文件合并的工作可以通过离线的打包工具或者类似Yahho!combo handler的实时在线服务来实现。
+无阻塞的脚本在页面加载完成后再加载JavaScript代码，也就是在window对象的load事件触发后再下载脚本。
+延迟的脚本将无需修
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1690,7 +1727,11 @@ JSON（JavaScript Object Notation）是一种由Douglas Crockford 构想和设�
 
 我只想安静的做个美男子。翻译：尘世三千繁华，我且与酒拜桃花。任尔金玉琳琅良驹成双，不敌我眉间红豆朱砂。   
 我书读的少，你可别骗我。翻译：君莫欺我不识字，人间安得有此事。
-鬼知道我经历了什么。翻译：阳世之人，未解吾之千千劫也
+鬼知道我经历了什么。翻译：阳世之人，未解吾之千千劫也。
+生活不止眼前的苟且，还有诗和远方。翻译：常抱青云之志，莫但求田问舍。
+感觉身体被掏空。翻译：叹吾躯，已淘虚。
+我已经使出了洪荒之力。翻译：太古滔滔之气，一泄如此。
+长的丑的都睡着了，长得帅的还醒着
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1860,7 +1901,9 @@ JSON（JavaScript Object Notation）是一种由Douglas Crockford 构想和设�
 
 
 
-什么是 MarkdownMarkdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标
+什么是 MarkdownMarkdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，粗体 或者 斜体 某些文字，更棒的是，它还可以
+制作一份待办事宜 Todo 列表
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2071,7 +2114,7 @@ JSON（JavaScript Object Notation）是一种由Douglas Crockford 构想和设�
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -2197,6 +2240,13 @@ JSON（JavaScript Object Notation）是一种由Douglas Crockford 构想和设�
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
 

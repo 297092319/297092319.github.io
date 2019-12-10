@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>迁移hexo</title>
+    <url>/2019/11/29/%E8%BF%81%E7%A7%BBhexo/</url>
+    <content><![CDATA[<h2 id="基础环境搭建"><a href="#基础环境搭建" class="headerlink" title="基础环境搭建"></a>基础环境搭建</h2><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>电脑中已经安装了<code>git</code>和<code>node.js</code>，直接随便找个文件夹在 <code>git bash</code> 中执行 <code>npm install -g hexo-cli</code>，这一步是安装<code>hexo</code>。<br>检测<code>hexo</code>是否成功安装，在 <code>git bash</code> 执行 <code>hexo v</code> 看到<code>hexo</code>的版本号就说明安装成功了。</p>
+<p>之后创建本地<code>hexo</code>仓库，<code>hexo init &lt;folder&gt;</code> 也可以<code>cd</code>到目标目录，执行<code>hexo init</code>（这里用<code>blog</code>文件夹做说明 <code>hexo init &lt;blog&gt;</code> 或者新建一个<code>blog</code>的文件夹然后执行 <code>hexo init</code>），这一步文件夹内会生成一些基本的文件，这些都是<code>hexo</code>自动部署的，跟<code>git init</code> 同一个道理。</p>
+<p>然后 执行 <code>npm install hexo-deployer-git --save</code> 安装<code>hexo</code>提供的快速方便的一键部署功能，然后改 <code>_config.yml</code> 中最下面的配置文件：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">deploy:</span></pre></td></tr><tr><td class="code"><pre><span class="line">   type: git</span></pre></td></tr><tr><td class="code"><pre><span class="line">   repo: <span class="tag">&lt;<span class="name">repository</span> <span class="attr">url</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">   branch: [branch]</span></pre></td></tr><tr><td class="code"><pre><span class="line">   message: [message]</span></pre></td></tr></table></figure>
+<p>至此，全部安装工作已经完成，可以在blog的目录下用hexo s测试是否正常。</p>
+<h3 id="ssh生成"><a href="#ssh生成" class="headerlink" title="ssh生成"></a>ssh生成</h3><p>若本机中已经有<code>ssh</code>，直接添加到<code>github</code>的<code>ssh</code>里面即可，本地没有话，先生成  <code>ssh-keygen -t rsa -C &quot;qq-email@qq.com&quot;</code> （执行期间会让选择放置ssh的目录和ssh密码），用文本编辑器打开ssh.pub文件，拷贝其中的内容，将其添加到 <code>github</code>的 <code>Add SSH Key</code>，添加完成后用 <code>ssh -T git@github.com</code>若提示 <code>Hi *****! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>，这就说明与<code>github</code>连接成功了。</p>
+<h2 id="重装和迁移"><a href="#重装和迁移" class="headerlink" title="重装和迁移"></a>重装和迁移</h2><h3 id="重装"><a href="#重装" class="headerlink" title="重装"></a>重装</h3><p>这个概念跟网上说的，如何在另外一台电脑写博客是一个意思，没有很多繁琐的操作，只需要把 <code>source</code>、<code>themes</code> 、 <code>_config.yml</code> 覆盖到 <code>blog</code> 的那个文件夹即可 ，只要<code>hexo</code>环境没问题，<code>hexo</code>的一系列操作都没问题（在第一次<code>hexo d</code>可能会有些慢，耐心等待）。<br>　　同样，在新电脑上只要把环境搭建好，只要把两个文件夹一个配置文件覆盖过去，都没问题。<br>　　包括在备份时也只需要把这两个文件夹一个配置文件备份好，其他的都不用管了。</p>
+<h3 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h3><p>至于说迁移，只要本机的<code>hexo</code>环境没问题，把<code>blog</code>文件夹随便放哪都可以。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>折腾了一下午总结出来的：</p>
+<ol>
+<li>换系统或者换电脑需要重装 <code>hexo</code> 的时候，只需要在<code>hexo</code>环境搭建好的基础上，只需要把 <code>source</code>、<code>themes</code> 、<code>_config.yml</code> 覆盖到新的博客目录下即可。</li>
+<li>只要本机的<code>hexo</code>环境没问题，把<code>blog</code>文件夹随便放哪都可以。</li>
+<li>应该是<code>hexo</code>版本更新了的缘故，<code>hexo d</code>时只能在<code>git bash</code>中执行，其他（window环境）命令行模式都是提示无法获取远程仓库或者没有权限。</li>
+</ol>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>-Hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo报错</tag>
+        <tag>经验总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>wamp服务器让局域网用户访问，403forbidden</title>
+    <url>/2019/03/01/wamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%A9%E5%B1%80%E5%9F%9F%E7%BD%91%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE,403forbidden%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>1.httpd.conf文件，搜索关键字：onlineoffline tag - don’t remove，将 Require local 修改成 Require all granted；</p>
+<p>2.httpd-Vhosts.conf 文件，同样将Require local 修改成 Require all granted；（这个是大多数博客没有写的）</p>
+<p>3.重启Apache；</p>
+<p>4.重点！重点！重点！  关闭防火墙.</p>
+<p><img src="https://s2.ax1x.com/2019/03/01/kH4RQH.png" alt="apache"></p>
+<p><img src="https://s2.ax1x.com/2019/03/01/kH4Wyd.png" alt="denfender"></p>
+]]></content>
+      <categories>
+        <category>-服务器</category>
+      </categories>
+      <tags>
+        <tag>-经验总结 -建站经验 -WAMP集成环境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>炫酷的Canvas粒子特效</title>
+    <url>/2018/12/12/%E7%82%AB%E9%85%B7%E7%9A%84Canvas%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88/</url>
+    <content><![CDATA[<p>随着html5<code>Canvas</code>元素的推出呢，现在的浏览器具备了更强大的绘制图像的功能，甚至<code>canvas</code>已经可以用来制作大型网页游戏，关于<code>Canvas</code>的js库也越来越多，有动画库还有图表库比如Echart等等。今天我就要给大家推荐两款非常炫酷的<code>Canvas</code>粒子特效，let’s hit the road!</p>
+<h3 id="Particleground粒子背景"><a href="#Particleground粒子背景" class="headerlink" title="Particleground粒子背景"></a>Particleground粒子背景</h3><p>articleground是一款时髦的jquery粒子系统背景插件，PC端可通过鼠标控制视差效果，而移动端可用重力感应控制，Particleground可以运行在任何支持html5 canvas的浏览器上。</p>
+<p>大家可以先<a href="http://jnicol.github.io/particleground/" target="_blank" rel="noopener">看看效果</a>。</p>
+<p>怎么样是不是很炫酷！！那么要使用这个特效也是非常的简单。</p>
+<p>首先放上项目的<a href="https://github.com/jnicol/particleground" target="_blank" rel="noopener">github地址</a>。把代码clone下来到本地。然后引入它。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span> <span class="attr">src</span>=<span class="string">'jquery-3.0.0.min.js'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span> <span class="attr">src</span>=<span class="string">'jquery.particleground.min.js'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>注意这个组件是基于jQuery的，所以在你也需要引入JQuery文件。</p>
+<p>然后在html里面添加一个Canvas容器：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"particles"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>最后在js中将它初始化：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#particles'</span>).particleground();</span></pre></td></tr></table></figure>
+<p>这样你的设置就完成了</p>
+<p>当然你也可以设置参数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'#particles'</span>).particleground(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">dotColor: <span class="string">'#ff0000'</span>,    <span class="comment">// 点的颜色</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">lineColor: <span class="string">'#ff0000'</span>   <span class="comment">//  线的颜色</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
+<p>更多具体的参数请参阅官方文档。</p>
+<h3 id="canvas-nest-js粒子背景"><a href="#canvas-nest-js粒子背景" class="headerlink" title="canvas-nest.js粒子背景"></a>canvas-nest.js粒子背景</h3><p>接下来是另一款粒子背景，它和上面的 Particleground 有些不一样，粒子并不是随机分散的而是聚集在鼠标的周围，这样可以很清除的反应鼠标的位置。</p>
+<p><a href="http://www.atool.org/" target="_blank" rel="noopener">在这里</a>查看背景预览。</p>
+<p>使用这款组件非常的容易，只需要在你的页面中加入这段代码即可（注意要放在body里面）</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>是不是异常的简单！！</p>
+<p>当然你也可以下载文件到本地，<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="noopener">这里</a>是项目的地址。</p>
+<p>同样的你可以设置动画参数，只需要在script标签里面添加就行了，像这样：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">color</span>=<span class="string">"0,0,255"</span> <span class="attr">opacity</span>=<span class="string">'0.7'</span> <span class="attr">zIndex</span>=<span class="string">"-2"</span> <span class="attr">count</span>=<span class="string">"99"</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>上面的参数分别是线条颜色、线条透明度、z轴值、以及粒子个数。</p>
+<p>更多的参数请参阅项目文档。</p>
+<p>要提醒一点的是，不管你使用哪个组件，不要将粒子的数量设置得太多，这样浏览器的性能会跟不上，毕竟图像绘制还是很吃性能的，浏览器甚至还会崩溃卡死。</p>
+<p>好了，就介绍到这里了，祝各位小伙伴玩得愉快哦。</p>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>HTML5</category>
+      </categories>
+      <tags>
+        <tag>经验总结</tag>
+        <tag>Canvas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用canvas制作一个简单的随机验证码</title>
+    <url>/2018/12/12/%E7%94%A8canvas%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
+    <content><![CDATA[<p>现在验证码在网页表单中几乎是标配，用来防止机器人攻击网站，今天我们就用canvas和js来写一个简单的随机二维码。</p>
+<a id="more"></a>
+<h4 id="制作思路"><a href="#制作思路" class="headerlink" title="制作思路"></a>制作思路</h4><p>大家知道canvas是HTML5里面的新特性，可以用来绘图，配合js可以绘制出各种各样的图案。验证码一般由数字或字母组成，再加上一些视觉干扰的元素，防止机器人识别。而canvas可以绘制文字及线条，还可以做一些旋转处理，利用这些特性我们就可以做出一个简单的随机验证码。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">canvas</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"30"</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">br</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">placeholder</span>=<span class="string">"请输入验证码"</span> <span class="attr">id</span>=<span class="string">"input"</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"check()"</span>&gt;</span>验证<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="javascript">	<span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">var</span> ctx=c.getContext(<span class="string">"2d"</span>);</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	ctx.fillStyle=<span class="string">"#BFEFFF"</span>;<span class="comment">//绘制背景颜色</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	ctx.fillRect(0,0,160,30);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="comment">//随机产生4个字符</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">var</span> chars = [];</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; <span class="number">4</span>;i++)&#123;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="javascript">		chars.push(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">9</span>).toString());</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	ctx.font=<span class="string">"20px Verdana"</span>;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">var</span> x = <span class="number">15</span>;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">var</span> colors = [<span class="string">'red'</span>,<span class="string">'yellow'</span>,<span class="string">'blue'</span>,<span class="string">'green'</span>,<span class="string">'pink'</span>,<span class="string">'black'</span>];</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="comment">//绘制4个字符</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	for(i = 0;i &lt; 4;i++)&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="javascript">		ctx.fillStyle = colors[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">5</span>)];</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">		ctx.fillText(chars[i],x,25);</span></pre></td></tr><tr><td class="code"><pre><span class="line">		x = x + 40;</span></pre></td></tr><tr><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="comment">//对图案随机加入线条造成干扰</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">var</span> lineNumber = <span class="number">5</span>; <span class="comment">// 线条条数</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">var</span> lineX = <span class="number">160</span>;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="keyword">var</span> lineY = <span class="number">30</span>;  <span class="comment">// 最大线条坐标</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line">	for(i = 0;i &lt; lineNumber;i++)&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="javascript">		ctx.strokeStyle = colors[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">5</span>)];</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">		ctx.beginPath();</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="javascript">		ctx.moveTo(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*lineX),<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*lineY));</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="javascript">		ctx.lineTo(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*lineX),<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*lineY));</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">		ctx.stroke();</span></pre></td></tr><tr><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">    <span class="comment">// 点击按钮验证</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">	<span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">()</span></span>&#123;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="javascript">		<span class="keyword">var</span> input = <span class="built_in">document</span>.getElementById(<span class="string">'input'</span>).value;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">		<span class="keyword">if</span>(input === chars.join(<span class="string">''</span>))&#123;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">			alert(<span class="string">"验证成功"</span>);</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">		<span class="keyword">else</span>&#123;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">			alert(<span class="string">'验证失败'</span>);</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></pre></td></tr></table></figure>
+
+<p>最后的效果：（每一次刷新后的图案都是随机的）<br><img src="https://s1.ax1x.com/2018/12/12/FY5hCt.png" alt="最后效果"></p>
+<p>当然这里使用的是数字，你也可使用字母或数字字母混用。在干扰方面，你还可以加上旋转，缩放，虚化等等，这些效果用canvas同样可以实现。</p>
+<p>以上。</p>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>HTML5</category>
+      </categories>
+      <tags>
+        <tag>经验总结</tag>
+        <tag>canvas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何解决前后端分离开发时的跨域问题</title>
+    <url>/2018/12/12/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%BC%80%E5%8F%91%E6%97%B6%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>最近在和小伙伴一起写一个项目，采用的是前后端分离开发，前后台的交流均通过ajax。但是我俩是在各自的电脑上开发各自的部分，所以两台电脑处于不同的域中，前台在请求后台接口时会发生跨域的问题，那么这个问题如何解决呢？</p>
+<a id="more"></a>
+
+<h3 id="前台部分"><a href="#前台部分" class="headerlink" title="前台部分"></a>前台部分</h3><p>在前台的ajax请求中需要允许跨域，我使用的是jQuery的ajax函数，具体的设置如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">jQuery.ajax(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            url : url,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            data: data,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            type : <span class="string">'POST'</span>,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            xhrFields: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                withCredentials: <span class="literal">true</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            dataType:<span class="string">"json"</span>,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            crossDomain: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            success:<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                <span class="comment">// 请求成功后的操作</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            error:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                <span class="comment">// 请求失败后的操作</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;);</span></pre></td></tr></table></figure>
+
+<h3 id="后台部分"><a href="#后台部分" class="headerlink" title="后台部分"></a>后台部分</h3><p>跨域问题最重要的还是后台部分，后台需要允许来自于其他域的请求，以下是php的解决方案：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">header(<span class="string">"Access-Control-Allow-Credentials: true"</span>); <span class="comment">// 允许跨域访问</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">header(<span class="string">"Access-Control-Allow-Origin:123.123.123.123"</span>);    <span class="comment">//允许来自123.123.123.123的ip地址提交访问</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">header(<span class="string">"Access-Control-Allow-Origin:*"</span>);    <span class="comment">//允许任何地址的访问</span></span></pre></td></tr></table></figure>
+
+<p>其他语言的解决方案大同小异，主要就是在返回头中写上允许跨域访问的域名或IP就行，建议不要使用通配符 * ，这样对服务器来讲并不安全，尽管是在开发过程中。</p>
+<p>在前后台分离的开发过程中还有很多坑，需要我们一个一个去解决，特别是前后台数据交流的部分是很值得多思考的。现在前后台分离开发的模式在越来越多的项目中使用，早早熟悉有利于以后的职业生涯。以后还发现什么坑也会贴上来的(๑•̀ㅂ•́)و✧。</p>
+<p>最后推荐一本书，<a href="http://www.ituring.com.cn/book/1720" target="_blank" rel="noopener">json必知必会</a>，json是前后端交流的信使，熟悉它的用法和应用自然非常重要，最后祝大家学习愉快︿(￣︶￣)︿。</p>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>跨域</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>ajax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>你不知道的JSON</title>
+    <url>/2018/12/12/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JSON/</url>
+    <content><![CDATA[<h3 id="JSON的历史"><a href="#JSON的历史" class="headerlink" title="JSON的历史"></a>JSON的历史</h3><p>Douglas Crockford 是JSON的创造者，也是JavaScript：the good part的作者。</p>
+<p><strong>JSON</strong>（<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation）是一种由Douglas Crockford 构想和设计、轻量级的<a href="https://zh.wikipedia.org/w/index.php?title=%E8%B3%87%E6%96%99%E4%BA%A4%E6%8F%9B%E8%AA%9E%E8%A8%80&action=edit&redlink=1" target="_blank" rel="noopener">数据交换语言</a>，该语言以易于让人阅读的文字为基础，用来传输由属性值或者序列性的值组成的数据对象。尽管JSON是<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">JavaScript</a>的一个子集，但JSON是独立于语言的<a href="https://zh.wikipedia.org/wiki/%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">文本格式</a>，并且采用了类似于<a href="https://zh.wikipedia.org/wiki/C%E8%AA%9E%E8%A8%80" target="_blank" rel="noopener">C语言</a>家族的一些习惯。</p>
+<p>JSON格式是1999年《<em>JavaScript Programming Language, Standard ECMA-262 3rd Edition</em>》的子集合，所以可以在<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">JavaScript</a>以<code>eval()</code>函数（javascript通过eval（）调用解析器）读入。不过这并不代表JSON无法使用于其他语言，事实上几乎所有与网页开发相关的语言都有JSON函数库。 </p>
+<p>JSON是Douglas Crockford在2001年开始推广使用的数据格式，在2005年-2006年正式成为主流的数据格式，雅虎和谷歌就在那时候开始广泛地使用JSON格式。 </p>
+<h3 id="什么是JSON（-JavaScript-Object-Notation）"><a href="#什么是JSON（-JavaScript-Object-Notation）" class="headerlink" title="什么是JSON（ JavaScript Object Notation）"></a>什么是JSON（ JavaScript Object Notation）</h3><ul>
+<li><p>JSON是一种数据交换格式。</p>
+</li>
+<li><p>JSON独立于编程语言。</p>
+<p>JSON不局限于某项技术，本身非私有，且可移植。对于产生（序列化）和读取（反序列化）JSON 数据，所有的现代编程语言（Java、JavaScript、Ruby、C#、PHP、Python、Groovy等）和平台都提供了良好的支持。</p>
+<p>可以说，我们使用的是一种基于对象表示法的数据交换格式，JSON 表达数据的方式对通用的编程概念都很友好。</p>
+</li>
+<li><p>为什么使用JSON：</p>
+<ul>
+<li><p>基于 JSON 的 RESTful API 的爆发式增长</p>
+</li>
+<li><p>JSON 基本数据结构的简洁性</p>
+<p>JSON 非常简洁，并且正在逐步替代 XML 成为互联网上主要的数据交换格式。它易于阅读，相关结构也很容易与软件开发人员所熟悉的概念对应起来，精简的数据类型也便于程序员理解，如数组、对象和名称 - 值对。</p>
+<p>由于节省了每个数据元素的开始标签与结束标签，JSON 格式的额外开销更少、更为紧凑，所以JSON 格式的文档一般比内容相同的 XML 文档小。从企业级应用的角度来看，与 XML 相比，JSON 文档在网络上的传输与处理更快，因此效率更高。</p>
+<p>如今 JSON 在配置文件领域也占有一席之地。后面会将与其他配置文件的区别。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="JSON语法"><a href="#JSON语法" class="headerlink" title="JSON语法"></a>JSON语法</h3><p>JSON包含3种核心数据类型：</p>
+<ul>
+<li><p>名称-值对：由一个名称（数据属性）和一个值组成。</p>
+</li>
+<li><p>对象：名称 - 值对的无序集合。</p>
+</li>
+<li><p>数组：值的有序集合。</p>
+</li>
+<li><p>键始终被双引号包围，当值是字符串时，必须使用双引号。</p>
+<p>JSON 中的名称 - 值对是一种对许多系统都十分友好的数据结构，而使用空格和特殊字符（即 a-z、0-9 除外的其他字符）忽略了可移植性。我们在第 1 章中将这一专业术语定义为“以一种双方系统都兼容的方式在平台间传递信息”。如果我们这么做的话，会直接降低 JSON 数据的可移植性；因此我们说，为了获得最大可移植性，应尽可能避免使用空格或特殊字符。</p>
+<p>JSON 中的名称 - 值对的名称如果被系统作为对象装入内存的话，将会成为“属性”。在部分系统中，属性名可以包含下划线（ _ ）或数字，但是大多数情况下最好是使用英文字母 A<del>Z 或 a</del>z，在含有多个单词时，最好使用驼峰表示法。</p>
+<p>例子：”Lindsay’s animal”:”cat”</p>
+</li>
+</ul>
+<h3 id="JSON数据类型"><a href="#JSON数据类型" class="headerlink" title="JSON数据类型"></a>JSON数据类型</h3><p>JSON中的数据类型：</p>
+<p>在字符串中需要转义的字符：</p>
+<ul>
+<li>双引号</li>
+<li>反斜杠</li>
+<li>/ （正斜线）</li>
+<li>\b （退格符）</li>
+<li>\f （换页符）</li>
+<li>\t （制表符）</li>
+<li>\n （换行符）</li>
+<li>\r （回车符）</li>
+<li>\u 后面跟十六进制字符（如笑脸表情 \u263A ）</li>
+</ul>
+<h3 id="JSON中的数字"><a href="#JSON中的数字" class="headerlink" title="JSON中的数字"></a>JSON中的数字</h3><ul>
+<li><p>数字</p>
+<ul>
+<li>整型</li>
+<li>浮点数</li>
+<li>定点数 —— 计算机中采用的一种数的表示方法。参与运算的数的小数点位置固定不变 。</li>
+</ul>
+<p>数字需要注意：</p>
+<ul>
+<li>数值永远是十进制数（只能出现数字 0~9），不能以 0 开头。</li>
+<li>数值可以存在由小数点（ . ）开头的小数部分。</li>
+<li>数值可以是以 10 为底的指数，该指数由 e 或 E 来表示，其后跟正号表示正指数幂，跟<br>负号则表示负指数幂。</li>
+<li>数值不支持八进制数和十六进制数。</li>
+<li>与 JavaScript 不同，数值不能是 NaN（Not a Number，用于表示非法数值），也不能是<br>Infinity</li>
+</ul>
+</li>
+</ul>
+<h3 id="没有注释"><a href="#没有注释" class="headerlink" title="没有注释"></a>没有注释</h3><p>一言以蔽之，JSON 中没有注释。</p>
+<p>根据 Crockford 在 Yahoo! JSON group 和 Google+ 上的说法，JSON 最开始是允许出现注释的，但之后不久就因为以下原因移除了注释。</p>
+<ul>
+<li><p>Crockford 认为注释没有什么用处。</p>
+</li>
+<li><p>JSON 解析器在支持注释方面存在困难。</p>
+</li>
+<li><p>出现了滥用注释的情况。Crockford 发现有些注释被用于解析指令，而这会彻底摧毁<br>JSON 的互操作性。</p>
+</li>
+<li><p>移除注释有利于 JSON 实现跨平台性，简化这方面的支持工作。</p>
+</li>
+<li><p>没有注释意味着我们需要更语义化的命名，或者给要描述的对象添加一个描述字段。没有注释是JSON的一个相对于有注释数据格式在可读性方面的一个劣势。</p>
+<h3 id="JSON风格指南"><a href="#JSON风格指南" class="headerlink" title="JSON风格指南"></a>JSON风格指南</h3><p>google的一份风格指南。</p>
+<p><strong>选择有意义的属性名</strong> </p>
+<ul>
+<li>属性名应该是具有定义语义的有意义的名称。</li>
+<li>属性名必须是驼峰式的，ASCII码字符串。</li>
+<li>首字符必须是字母，下划线(<em>_</em>)或美元符号(<em>$</em>)。</li>
+<li>随后的其他字符可以是字母，数字，下划线(<em>_</em>)或美元符号(<em>$</em>)。</li>
+<li>应该避免使用Javascript中的保留关键字(下文附有Javascript保留字清单)</li>
+</ul>
+<p><strong>数组类型应该是复数属性名。其它属性名都应该是单数。</strong> </p>
+<p>数组通常包含多个条目，复数属性名就反映了这点。在下面这个保留名称中可以看到例子。属性名<em>items</em>是复数因为它描述的是一组对象。大多数的其它字段是单数。 </p>
+<p><strong>考虑移除空或null值</strong> </p>
+<p>如果一个属性是可选的或者包含空值或<em>null</em>值，考虑从JSON中去掉该属性，除非它的存在有很强的语义原因。 </p>
+<p><strong>枚举值应当以字符串的形式呈现</strong> </p>
+<p>随着APIs的发展，枚举值可能被添加，移除或者改变。将枚举值当作字符串可以使下游用户幽雅地处理枚举值的变更。</p>
+<p><strong>通过选择新的属性名或将API版本化来避免命名冲突</strong></p>
+<p>新的属性可在将来被添加进保留列表中。JSON中不存在命名空间。如果存在命名冲突，可通过选择新的属性名或者版本化来解决这个问题。</p>
+<p><strong>JavaScript保留字应该避免在属性名中使用</strong> </p>
+<h5 id="JSON结构和保留属性名"><a href="#JSON结构和保留属性名" class="headerlink" title="JSON结构和保留属性名"></a>JSON结构和保留属性名</h5><p><a href="https://github.com/darcyliu/google-styleguide/blob/master/JSONStyleGuide.md#json%E7%BB%93%E6%9E%84%E5%92%8C%E4%BF%9D%E7%95%99%E5%B1%9E%E6%80%A7%E5%90%8D" target="_blank" rel="noopener">https://github.com/darcyliu/google-styleguide/blob/master/JSONStyleGuide.md#json%E7%BB%93%E6%9E%84%E5%92%8C%E4%BF%9D%E7%95%99%E5%B1%9E%E6%80%A7%E5%90%8D</a></p>
+</li>
+</ul>
+<h3 id="其他特性"><a href="#其他特性" class="headerlink" title="其他特性"></a>其他特性</h3><ul>
+<li><p>语法验证。</p>
+<p>工具：<a href="https://jsonformatter.curiousconcept.com/" target="_blank" rel="noopener">JSON Formatter &amp; Validator</a>  可视化工具，会展示树形结构。</p>
+<pre><code>[JSON Editor Online](http://www.jsoneditoronline.org/)
+
+[JSONLint](http://jsonlint.com/) </code></pre><p>以上这些都是语法验证工具。我们会在之后讨论另一种类型的验证——一致性验证。语法验证关注的是 JSON 的格式，而一致性验证关注的是其独特的数据结构。</p>
+</li>
+<li><p>JSON的媒体格式</p>
+<p>JSON 的 MIME 类型是 application/json 。</p>
+</li>
+<li><p>序列化和反序列化。</p>
+<p>JSON从2009年的 ECMAScript 5 标准开始成为 JavaScript 原生类库的一部分。</p>
+<p>在之前使用eval()这个函数来执行序列化。</p>
+<p>使用 JSON.stringify() 和 JSON.parse() 进行 JavaScript 中的序列化 / 反序列化操作。</p>
+<p>其他的语言也有序列化和反序列化的库。</p>
+</li>
+</ul>
+<h3 id="JSON作为配置文件"><a href="#JSON作为配置文件" class="headerlink" title="JSON作为配置文件"></a>JSON作为配置文件</h3><p>选择配置文件的考量：可读性，方便被编程语言/框架解析。</p>
+<p>软件中经常会有配置文件或设置文件，它让我们可以不必重新编译就能修改设置。配置文件的格式有很多，有 INI ，yuml和 XML 等。</p>
+<p>yuml和XML都是有注释的。</p>
+<p>yuml除了支持JSON中的数据类型，还支持时间和日期这两种数据类型，相对于JSON，yaml的语法规则要稍微复杂一些，对于初学者来说，没有JSON那么好上手。</p>
+<p>XML 能够包含更为复杂的数据，但是它不像 JSON 一样具有数据类型。</p>
+<p>JSON和<a href="https://baike.baidu.com/item/XML" target="_blank" rel="noopener">XML</a>还有另外一个很大的区别在于有效数据率。JSON作为数据包格式传输的时候具有更高的效率，这是因为JSON不像XML那样需要有严格的闭合标签，这就让有效数据量与总数据包比大大提升，从而减少同等数据流量的情况下，网络的传输压力 </p>
+<p>除了这些数据格式本身具有的优缺点外，是否能够很方便地被编程语言 / 框架解析也是一个很重要的考量因素。如果 JSON 解析器已经在你的应用中深度使用了，那么 JSON 可能是你配置文件的最佳选择。</p>
+<h3 id="JSON-Schema-对数据进行验证（重点）语义校验"><a href="#JSON-Schema-对数据进行验证（重点）语义校验" class="headerlink" title="JSON Schema   对数据进行验证（重点）语义校验"></a>JSON Schema   对数据进行验证（重点）语义校验</h3><p><strong>JSON Schema</strong>官网：<a href="http://json-schema.org/" target="_blank" rel="noopener">http://json-schema.org/</a></p>
+<p><strong>JSON Schema</strong> is a vocabulary that allows you to <strong>annotate</strong> and <strong>validate</strong> JSON documents. </p>
+<p>JSON Schema是一个词汇表，允许您注释和验证JSON文档。它也是一个JSON文件，本身遵守JSON规范。</p>
+<p>json-schema 的用途越来越广泛，除了定义数据结构外，我们还可以使用 json-schema 验证数据格式和生成随机数据 。</p>
+<p>它可以验证的内容有：</p>
+<ul>
+<li><p>值的数据类型是否正确？</p>
+<p>可以具体规定一个值是数字、字符串等类型。</p>
+</li>
+<li><p>是否包含所需要的数据？</p>
+<p>可以具体规定哪些数据是需要的，哪些是不需要的。</p>
+</li>
+<li><p>值的形式是不是我需要的？</p>
+<p>可以指定范围、最小值和最大值。</p>
+</li>
+</ul>
+<p>编写工具：<a href="https://jsonschema.net/" target="_blank" rel="noopener">https://jsonschema.net/</a></p>
+<h5 id="如何使用Schema"><a href="#如何使用Schema" class="headerlink" title="如何使用Schema"></a>如何使用Schema</h5><p>首先，需要在 JSON 第一个名称 - 值对中，声明其为一个 schema 文件。</p>
+<p>第二个名称 - 值对应该是 JSON Schema 文件的标题.</p>
+<p>在 JSON Schema 文件的第三个名称值对中，要定义需要在 JSON 中包含的属性。</p>
+<p>为了在 JSON Schema 中实现这一逻辑，需要在 “$schema” 、 “title” 和”properties” 后面加上第四个名称 - 值对，它的名称是 “required” ，值为一个数组。数组中包含必填的字段。</p>
+<p>非常重要的一点是，如果你的 JSON Schema 中不包含 “required” 名称 - 值对，那么将不会有必填项。一个没有任何名称 - 值对的空 JSON 对象也被认为是合法的。</p>
+<p>本章提供的例子只是简介，是冰山一角。JSON Schema 还支持正则表达式（一种字符形式，比如电子邮件地址的格式）以及枚举类型（一个包含所有可能值的列表）。</p>
+<h3 id="用schema校验JSON"><a href="#用schema校验JSON" class="headerlink" title="用schema校验JSON"></a>用schema校验JSON</h3><p>AJV号称是最快的JSON Schema验证器，我们看一下它的官网：可以看到这个下载次数非常高，说明使用的是非常广泛的。</p>
+<p>我们还可以看到它的性能表现，这里号称是比第二名快50%。</p>
+<p>它的特性：它支持04，06，07的草案标准，并且支持浏览器和nodejs，可以说是比较全面的验证器了。</p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>现在我要推荐一些工具给大家。</p>
+<p>刚刚看了schema的语法，因为schema也是JSON文件，所以写起来还是比较麻烦的，特别是你的数据稍稍复杂一点就很费时间。这里推荐一个非常方便的一个工具：JSONSchema.net。你只需要填入你的示例数据，然后这个工具就会识别并自动生成schema，当然它做不到完全准确，它只能帮你完成70%的工作，还需要你去检查和完善，不过已经可以帮我们省下很多力气了。</p>
+<p>接下来是生成测试数据，JSON-generator可以帮你生成你想要的测试数据，它提供一些工具函数来帮助你模拟出一些你想要的数据。</p>
+<p>接下来要介绍一个非常好用的工具：JSON-server，来看一下的官网。</p>
+<p>它的使用非常简单，也支持很多种动作。可以做过滤，分页，简单的排序啊，数据的切片啊等等功能，对于辅助我们平常的开发什么的还是够用的，这三个工具加在一起可以帮助我们提高很多效率哈。</p>
+<h3 id="在JSON中进行搜索"><a href="#在JSON中进行搜索" class="headerlink" title="在JSON中进行搜索"></a>在JSON中进行搜索</h3><p>主要是给大家推荐几个工具，它们的使用方法都非常相似哈，这里以JSONPath为例介绍一下：</p>
+<ul>
+<li>JSONPath</li>
+<li>JSONPointer</li>
+<li>jq</li>
+</ul>
+<p>通过这张表我们可以看到它的查询能力还是比较全面的。</p>
+<h3 id="JSON与mysql"><a href="#JSON与mysql" class="headerlink" title="JSON与mysql"></a>JSON与mysql</h3><p>从MySQL 5.7.8 开始，MySQL支持原生的JSON格式，即有独立的json类型，用于存放 json格式的数据。</p>
+<p>MySQL对支持JSON的做法是，在server层提供了一堆便于操作JSON的函数，至于存储，就是简单地将JSON编码成BLOB(binary large object)，二进制大对象 ，然后交由存储引擎层进行处理，也就是说，MySQL 5.7的JSON支持与存储引擎没有关系，MyISAM 存储引擎也支持JSON 格式。 </p>
+<p>JSON 格式的数据并不是以string格式存储于数据库而是以内部的binary 格式，以便于快速的定位到json 格式中值</p>
+<p>在插入和更新操作时MySQL会对JSON 类型做校验，已检查数据是否符合json格式，如果不符合则报错。</p>
+<p>MySQL支持JSON以后，总是避免不了拿来与MongoDB进行一些比较。但是，MySQL对JSON的支持，至少有两点能够完胜MongoDB：</p>
+<ol>
+<li>可以混合存储结构化数据和非结构化数据，同时拥有关系型数据库和非关系型数据库的优点</li>
+<li>能够提供完整的事务支持</li>
+</ol>
+<h3 id="JSON与NoSQL"><a href="#JSON与NoSQL" class="headerlink" title="JSON与NoSQL"></a>JSON与NoSQL</h3><h5 id="CouchDB"><a href="#CouchDB" class="headerlink" title="CouchDB"></a>CouchDB</h5><p>使用 JSON 文档存储数据的文档存储数据库——CouchDB。</p>
+<p>无缝多主同步，可从大数据扩展到移动，具有直观的HTTP / JSON API，专为可靠性而设计。couchDB也可以作为一个数据库服务器来使用。</p>
+<p>CouchDB（<a href="http://couchdb.apache.org/）是一种使用" target="_blank" rel="noopener">http://couchdb.apache.org/）是一种使用</a> JSON 文档存储数据的NoSQL 数据库。</p>
+<p><strong>Apache CouchDB</strong>是一个开源数据库，专注于易用性和成为”完全拥抱web的数据库”<a href="https://zh.wikipedia.org/wiki/CouchDB#cite_note-official-website-1" target="_blank" rel="noopener">[1]</a>。它是一个使用<a href="https://zh.wikipedia.org/wiki/JSON" target="_blank" rel="noopener">JSON</a>作为存储格式，<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">JavaScript</a>作为查询语言，<a href="https://zh.wikipedia.org/wiki/MapReduce" target="_blank" rel="noopener">MapReduce</a>和<a href="https://zh.wikipedia.org/wiki/HTTP" target="_blank" rel="noopener">HTTP</a>作为<a href="https://zh.wikipedia.org/wiki/API" target="_blank" rel="noopener">API</a>的<a href="https://zh.wikipedia.org/wiki/NoSQL" target="_blank" rel="noopener">NoSQL</a>数据库。其中一个显著的功能就是多主复制。CouchDB的第一个版本发布在2005年，在2008年成为了<a href="https://zh.wikipedia.org/wiki/Apache" target="_blank" rel="noopener">Apache</a>的项目。</p>
+<p>不同于<a href="https://zh.wikipedia.org/wiki/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93" target="_blank" rel="noopener">关系型数据库</a>，CouchDB没有将数据和关系存储在表格里。替代的，每个数据库是一个独立的文档集合。每一个文档维护其自己独立的数据和自包涵的schema。一个应用程序可能会访问多个数据库，比如其中一个位于用户的手机上，另一个位于在远程的服务器上。文档的元数据包含版本信息，让其能够合并可能因为数据库链接丢失导致的任何差异。</p>
+<p>由于 CouchDB 使用文档来存储数据，因此当从数据库中查询一个账户时，得到的直接就是一个结构化的文档。没有必要进行重组。这样既高效又方便。</p>
+<p>CouchDB 的另一个好处是有利于数据的变化。有些数据会随着时间而发生变化。当数据发生变化时，CouchDB无需修改表的结构。</p>
+<h5 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h5><p>MongoDB 是一种 NoSQL 数据库，允许开发人员以文档的形式存储数据。</p>
+<p>MongoDB是一个文档数据库，具有您需要的可查询性和索引所需的可伸缩性和灵活性。 </p>
+<ul>
+<li><p>关于BSON（Binary JSON，BSON）</p>
+<p>BSON 是 MongoDB 内部用于序列化 JSON 文档的一种二进制数据格式。</p>
+<p>bson对json做了一些对存储上的优化。</p>
+<p>json和bson的区别：</p>
+<ul>
+<li><p>更快的遍历速度</p>
+<p>对json格式来说，太大的json结构会导致数据遍历非常慢。在json中，要跳过一个文档进行数据读取，需要对此文档进行扫描才行，需要进行麻烦的数据结构匹配，比如括号的匹配。而bson对json的一大改进就是，它会将json的每一个元素的长度存在元素的头部，这样你只需要读取到元素长度就能直接seek到指定的点上进行读取了。 </p>
+</li>
+<li><p>操作更简易</p>
+<p>对json来说，数据存储是无类型的，比如你要修改基本一个值，从9到10，由于从一个字符变成了两个，所以可能其后面的所有内容都需要往后移一位才可以。  　　而使用bson，你可以指定这个列为数字列，那么无论数字从9长到10还是100，我们都只是在存储数字的那一位上进行修改，不会导致数据总长变大。  当然，在mongoDB中，如果数字从整形增大到长整型，还是会导致数据总长变大的。 </p>
+</li>
+<li><p>增加了额外的数据类型</p>
+<p>json是一个很方便的数据交换格式，但是其类型比较有限。bson在其基础上增加了“byte array”数据类型。这使得二进制的存储不再需要先base64转换后再存成json，大大减少了计算开销和数据大小。当然，在有的时候，bson相对json来说也并没有空间上的优势，比如对{“field”:7}，在json的存储上7只使用了一个字节，而如果用bson，那就是至少4个字节（32位） </p>
+</li>
+</ul>
+</li>
+<li><p>关于Schema</p>
+<p>MongoDB 是没有 Schema 的，这意味着数据库既不会校验数据，也不会在存储数据时依赖Schema。然而，应用程序对存储在每个文档中的数据还是会有数据结构上的预期，因为只有这样，应用程序才能放心地使用集合与文档。</p>
+<p>从MongoDB3.2开始，提供validator来对数据进行验证。 </p>
+<p>在创建集合的时候指定一个验证器像这样。</p>
+<p>这个验证器也有自己的规范，这里就不一一介绍了</p>
+</li>
+</ul>
+<h3 id="MessagePack"><a href="#MessagePack" class="headerlink" title="MessagePack"></a>MessagePack</h3><p>json作为数据交换格式，现在使用得越来越广泛，但是它还是有不少的弊端，MessagePack也是一个数据交换格式，它对针对JSON的一些问题做了一些优化。</p>
+<p>图上这个json长度为27字节，但是为了表示这个数据结构，它用了9个字节（就是那些大括号、引号、冒号之类的，他们是白白多出来的）来表示那些额外添加的无意义数据。<a href="http://msgpack.org/" target="_blank" rel="noopener">msgpack</a>的优化在图上展示的也比较清楚了，省去了特殊符号，用特定编码对各种类型进行定义，比如上图的A7，其中前四个bit A就是表示str的编码，而且它表示这个str的长度只用半个字节就可以表示了，也就是后面的7，因此A7的意思就是表示后面是一个7字节长度的string。</p>
+<p>但是这个格式的可读性和可编辑性就比较差了。</p>
+<p>核心压缩方式可参看官方说明<a href="https://github.com/msgpack/msgpack/blob/master/spec.md" target="_blank" rel="noopener">messagepack specification</a><br> 概括来讲就是:</p>
+<ol>
+<li><strong>true、false 之类的</strong>：这些太简单了，直接给1个字节，（0xc3 表示true，0xc2表示false）</li>
+<li><strong>不用表示长度的</strong>：就是数字之类的，他们天然是定长的，是用一个字节表示后面的内容是什么，比如用（0xcc 表示这后面，是个uint 8，用oxcd表示后面是个uint 16，用 0xca 表示后面的是个float 32)。对于数字做了进一步的压缩处理，根据大小选择用更少的字节进行存储，比如一个长度&lt;256的int，完全可以用一个字节表示。</li>
+<li><strong>不定长的</strong>：比如字符串、数组、二进制数据（bin类型），类型后面加 1~4个字节，用来存字符串的长度，如果是字符串长度是256以内的，只需要1个字节，MessagePack能存的最长的字符串，是(2^32 -1 ) 最长的4G的字符串大小。</li>
+<li><strong>高级结构</strong>：MAP结构，就是k-v 结构的数据，和数组差不多，加1~4个字节表示后面有多少个项</li>
+<li><strong>Ext结构</strong>：表示特定的小单元数据。也就是用户自定义数据结构。</li>
+</ol>
+<h3 id="protocol-buffer"><a href="#protocol-buffer" class="headerlink" title="protocol buffer"></a>protocol buffer</h3><p>Google Protocol Buffers 简称 Protobuf，它提供了一种灵活、高效、自动序列化结构数据的机制，可以联想 XML，但是比 XML 更小、更快、更简单。仅需要自定义一次你所需的数据格式，然后用户就可以使用 Protobuf 编译器自动生成各种语言的源码，方便的读写用户自定义的格式化的数据。与语言无关，与平台无关，还可以在不破坏原数据格式的基础上，依据老的数据格式，更新现有的数据格式。</p>
+<p>Protobuf 的特点简单总结如下几点：</p>
+<ul>
+<li>作用与 XML、json 类似，但它是二进制格式，性能好、效率高</li>
+<li>代码生成机制，易于使用</li>
+<li>解析速度快</li>
+<li>支持多种语言</li>
+<li>向后兼容、向前兼容</li>
+<li>缺点：可读性差</li>
+</ul>
+<p>目前，Protobuf 提供了两个大版本： 2.x 版本和 3.x 版本。 2.x 版本最新的版本是 2.6.1，支持 C++、Java 和 Python 三种语言的API。 3.x 版本最新的版本是 3.0.0-beta-1，支持 C++、Java、Python、Ruby、JavaNano、Objective-x 和 C# 这几种语言的 API。</p>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>JSON</category>
+      </categories>
+      <tags>
+        <tag>web开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在sublime中运行JavaScript脚本</title>
+    <url>/2018/12/12/%E5%9C%A8sublime%E4%B8%AD%E8%BF%90%E8%A1%8CJavaScript%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<p>sublime是一款轻量级的文本编辑器，非常受大家的欢迎，它不仅启动迅速，还提供非常丰富的插件供大家扩展功能。对于我个人来讲，我非常喜欢用sublime编写单个的脚本文件。但是前端的小伙伴们知道，如果编写js脚本，要编译运行的话必须在浏览器或者是node中运行，虽然不麻烦，但总归还是会消耗一些时间，对于一些简单的脚本，我们想能够立即看到脚本运行的结果，那么今天我就介绍一个可以直接在sublime中运行js脚本文件的方法。</p>
+<a id="more"></a>
+<p>下面是详细的步骤：</p>
+<h4 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h4><p>在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js的官网</a>下载并安装node.js，请确保你的node已经被添加到了环境变量中（这一步非常简单就不多说了，网上有很多教程请自行查阅）。</p>
+<h4 id="添加-build-system"><a href="#添加-build-system" class="headerlink" title="添加 build system"></a>添加 build system</h4><p>现在打开你的sublime，然后依次打开 Tools -&gt; Build System -&gt; New Build System，黏贴以下代码：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="attr">"cmd"</span>: [<span class="string">"node"</span>, <span class="string">"--use-strict"</span>, <span class="string">"--harmony"</span>, <span class="string">"$file"</span>],</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="attr">"selector"</span>: <span class="string">"source.js"</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>然后保存，这个时候sublime会自动识别并跳到build system的保存目录，取一个你喜欢的名字，比如JavaScript.sublime-build（这样方便识别），确定保存。</p>
+<p>另：上面的代码默认使用的是严格模式，并且支持ES6的新特性，如果你不想使用这些功能，可以使用下面的代码</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="attr">"cmd"</span>: [<span class="string">"node"</span>, <span class="string">"$file"</span>],</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="attr">"selector"</span>: <span class="string">"source.js"</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h4 id="开始使用吧！"><a href="#开始使用吧！" class="headerlink" title="开始使用吧！"></a>开始使用吧！</h4><p>保存好之后打开你的sublime，在tool中选择build system，你就会看到那个刚刚你取名字的编译系统，选择它。</p>
+<p>新建一个js文件，写上js代码，比如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'i:'</span>, i);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>保存，然后按下<code>ctrl+B</code>，就可以看到运行结果了。</p>
+<p><img src="https://s1.ax1x.com/2018/12/12/FYhhdA.png" alt="示例的运行结果"></p>
+<p>是不是非常的神奇呢！！</p>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>web开发</tag>
+        <tag>经验总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高性能JavaScript</title>
+    <url>/2018/12/12/%E9%AB%98%E6%80%A7%E8%83%BDJavaScript/</url>
+    <content><![CDATA[<h2 id="《高性能JavaScript》笔记"><a href="#《高性能JavaScript》笔记" class="headerlink" title="《高性能JavaScript》笔记"></a>《高性能JavaScript》笔记</h2><h3 id="第一章-加载和执行"><a href="#第一章-加载和执行" class="headerlink" title="第一章  加载和执行"></a>第一章  加载和执行</h3><h4 id="脚本位置"><a href="#脚本位置" class="headerlink" title="脚本位置"></a>脚本位置</h4><p>由于脚本阻塞的存在，建议将所有<code>&lt;script&gt;</code>标签尽可能放到 <code>&lt;body&gt;</code> 标签的底部，以减少对整个页面下载的影响。</p>
+<h4 id="组织脚本"><a href="#组织脚本" class="headerlink" title="组织脚本"></a>组织脚本</h4><p>减少脚本的HTTP请求数量，你可以将脚本合并。文件合并的工作可以通过离线的打包工具或者类似Yahho!combo handler的实时在线服务来实现。</p>
+<h4 id="无阻塞的脚本"><a href="#无阻塞的脚本" class="headerlink" title="无阻塞的脚本"></a>无阻塞的脚本</h4><p>在页面加载完成后再加载JavaScript代码，也就是在window对象的load事件触发后再下载脚本。</p>
+<h4 id="延迟的脚本"><a href="#延迟的脚本" class="headerlink" title="延迟的脚本"></a>延迟的脚本</h4><p>将无需修改DOM的脚本加上async属性，用于异步加载脚本。</p>
+<h4 id="动态脚本元素"><a href="#动态脚本元素" class="headerlink" title="动态脚本元素"></a>动态脚本元素</h4><p>你可以使用DOM对象来动态的加载一个脚本：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">script.src = <span class="string">"file.js"</span>;</span></pre></td></tr></table></figure>
+
+<p>使用动态脚本下载文件时，返回的代码通常会立即执行。如果你要动态加载多个脚本文件，一定要考虑清楚文件的加载顺序。并不是所有的浏览器都会保证以你添加脚本的顺序来执行代码，那取决于服务器的返回时间。</p>
+<h4 id="XMLHttpRequest脚本注入"><a href="#XMLHttpRequest脚本注入" class="headerlink" title="XMLHttpRequest脚本注入"></a>XMLHttpRequest脚本注入</h4><p>也就是通过Ajax来加载脚本文件。这种方法的优点在于你可以下载JavaScript代码但不立即执行。</p>
+<h4 id="推荐的无阻塞模式"><a href="#推荐的无阻塞模式" class="headerlink" title="推荐的无阻塞模式"></a>推荐的无阻塞模式</h4><p>向页面中添加大量JavaScript的推荐做法只需两步：</p>
+<ol>
+<li>添加动态加载所需代码。</li>
+<li>加载初始化页面所需代码。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"loader.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="actionscript">    loadScript(<span class="string">"the-rest.js"</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">        Application.init();</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+
+
+
+<h3 id="第二章-数据存取"><a href="#第二章-数据存取" class="headerlink" title="第二章  数据存取"></a>第二章  数据存取</h3><h4 id="管理作用域"><a href="#管理作用域" class="headerlink" title="管理作用域"></a>管理作用域</h4><p>要理解速度和作用域的关系，首先要正确地理解作用域的工作原理。</p>
+<h4 id="作用域链和标识符解析的性能"><a href="#作用域链和标识符解析的性能" class="headerlink" title="作用域链和标识符解析的性能"></a>作用域链和标识符解析的性能</h4><p>一个标识符所在的位置越深，它的读写速度就越慢。因此，函数中读写局部变量总是最快的，而读写全局变量总是最慢的。全局变量总是存在于执行作用域链的最末端。</p>
+<p>对于有过优化的浏览器，跨作用域访问标识符时并没有类似的性能损失。</p>
+<p>在没有优化的浏览器中，建议尽可能使用局部变量。</p>
+<h4 id="改变作用域链"><a href="#改变作用域链" class="headerlink" title="改变作用域链"></a>改变作用域链</h4><p>不要使用 <code>with</code> 来改变作用域链。</p>
+<h4 id="动态作用域"><a href="#动态作用域" class="headerlink" title="动态作用域"></a>动态作用域</h4><p>动态作用域只存在于代码执行过程中，因此无法通过静态分析检查出来。</p>
+<p>不推荐使用动态作用域。</p>
+<h4 id="闭包，作用域和内存"><a href="#闭包，作用域和内存" class="headerlink" title="闭包，作用域和内存"></a>闭包，作用域和内存</h4><p>闭包是对作用域的引用，因此在使用闭包时，可能会造成性能问题。在脚本编程中，最好小心的使用闭包，它同时关系到内存和执行速度。</p>
+<h4 id="原型链与嵌套成员"><a href="#原型链与嵌套成员" class="headerlink" title="原型链与嵌套成员"></a>原型链与嵌套成员</h4><p>属性或方法在原型链中的位置越深，访问它的速度就越慢。</p>
+<p>尽量避免在同一个函数中多次查找同一个对象，除非它的值改变了。</p>
+<h3 id="第三章-DOM编程"><a href="#第三章-DOM编程" class="headerlink" title="第三章 DOM编程"></a>第三章 DOM编程</h3><p>用脚本进行DOM操作的代价很昂贵，它是富应用中常见的性能瓶颈。</p>
+<h4 id="DOM访问与修改"><a href="#DOM访问与修改" class="headerlink" title="DOM访问与修改"></a>DOM访问与修改</h4><p>访问DOM的次数越多，代码的运行速度越慢。因此，应该减少访问DOM的次数，把运算尽量留在ECMAScript这一端进行。</p>
+<h4 id="HTML集合"><a href="#HTML集合" class="headerlink" title="HTML集合"></a>HTML集合</h4><p>HTML集合一直与文档保持着连接，每次你需要最新的信息时，都会重复执行查询的过程。这正是低效之源。</p>
+<p>你可以将HTML集合存储在局部变量中，这样可以减少引擎对HTML的读取。</p>
+<h4 id="遍历DOM"><a href="#遍历DOM" class="headerlink" title="遍历DOM"></a>遍历DOM</h4><p>使用浏览器提供的API来过滤文本节点会更高效。</p>
+<p>如果要处理大量组合查询，使用 <code>querySelectorAll()</code> 更有效率。</p>
+<h4 id="重绘与重排"><a href="#重绘与重排" class="headerlink" title="重绘与重排"></a>重绘与重排</h4><p>当元素的几何属性改变时，会引起浏览器的重排与重绘，重排和重绘都是代价昂贵的操作，它们会导致WEB应用程序的UI反应迟钝。所以，应该尽可能减少这类过程的发生。</p>
+<p>重排何时发生：</p>
+<ul>
+<li>添加或删除可见的DOM元素。</li>
+<li>元素位置改变。</li>
+<li>元素尺寸改变。</li>
+<li>内容改变。</li>
+<li>页面渲染器初始化</li>
+<li>浏览器窗口尺寸改变</li>
+</ul>
+<p>为了减少重绘及重排的发生次数，你可以：</p>
+<ul>
+<li>合并多次对DOM和样式的修改</li>
+<li>批量修改DOM</li>
+</ul>
+<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h4><p>使用事件委托来减少事件处理器的数量，可以显著提高性能。</p>
+<h3 id="第四章-算法和流程控制"><a href="#第四章-算法和流程控制" class="headerlink" title="第四章 算法和流程控制"></a>第四章 算法和流程控制</h3><h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p><code>forEach()</code> 等函数迭代方法尽管被支持也非常便利，但它仍然比基于循环的迭代要慢一些。如果你的程序有性能要求，基于函数的迭代不是很合适的选择。</p>
+<h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><p>优化 <code>if-else</code>  ：</p>
+<ol>
+<li>最简单的方法是将最可能出现的条件放在首位，这样可以避免很多不必要的判断。</li>
+<li>还可以将多个判断分组，减轻条件判断的负担。</li>
+</ol>
+<p>查找表：当大量离散值需要测试时，可以使用数组和普通对象来构建查找表，这样可以提高数据访问速度。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> results = [result1,result2,result3,result4,result5,result6,······];</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> results[value];</span></pre></td></tr></table></figure>
+
+<p>当单个键和单个值之间存在逻辑映射时，查找表的优势便能体现出来。</p>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>浏览器拥有固定数量的调用栈限制，当你使用了太多的递归超过最大调用栈容量时，浏览器将会报错。</p>
+<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>任何使用递归实现的算法同样可以使用迭代来实现。使用优化后的循环替代长时间运行的递归函数可以提升性能，因为运行一个循环比反复调用一个函数的开销要少得多。</p>
+<h3 id="第五章-字符串和正则表达式"><a href="#第五章-字符串和正则表达式" class="headerlink" title="第五章 字符串和正则表达式"></a>第五章 字符串和正则表达式</h3><p>提高正则表达式效率的方法：</p>
+<ol>
+<li>正则表达式以简单，必须的字元开始。起始标记最好为一个锚，特定字符串，字符类，和单词边界。</li>
+<li>使用量词模式，使它们后面的字元互斥。</li>
+<li>减少分支数量，减少分支范围。</li>
+<li>使用非捕获组。</li>
+<li>只捕获感兴趣的文本以减少后处理。</li>
+<li>暴露必需的字元。</li>
+<li>使用适合的量词。</li>
+<li>把正则表达式赋值给变量并重用它们。</li>
+<li>将复杂的正则表达式拆分</li>
+</ol>
+<h3 id="第六章-快速响应的UI界面"><a href="#第六章-快速响应的UI界面" class="headerlink" title="第六章 快速响应的UI界面"></a>第六章 快速响应的UI界面</h3><p>在你的web应用中限制高频率重复定时器的数量。</p>
+<p>Web Workers是浏览器支持的特性,它允许你在UI线程外部执行JavaScript代码，从而避免锁定UI。</p>
+<p>你可以用Web Worker来：</p>
+<ul>
+<li>编/解码大字符串</li>
+<li>复杂数学运算</li>
+<li>大数组排序</li>
+</ul>
+<h3 id="第七章-AJAX"><a href="#第七章-AJAX" class="headerlink" title="第七章 AJAX"></a>第七章 AJAX</h3><p>通过缓存数据来提高减少请求数量，选择合适的数据介质来提高你的数据解析速度。</p>
+<p>你应该知道如何使用成熟的Ajax类库，以及何时编写自己的底层Ajax代码。</p>
+<h3 id="第八章-编程实践"><a href="#第八章-编程实践" class="headerlink" title="第八章 编程实践"></a>第八章 编程实践</h3><h4 id="使用Obejct-Array直接量"><a href="#使用Obejct-Array直接量" class="headerlink" title="使用Obejct/Array直接量"></a>使用Obejct/Array直接量</h4><p>直接量比使用对象更快：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array1 = [];</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="comment">// 上面的代码比下面的运行得更快</span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array2 = <span class="keyword">new</span> <span class="built_in">Array</span>();</span></pre></td></tr></table></figure>
+
+
+
+<h4 id="位操作"><a href="#位操作" class="headerlink" title="位操作"></a>位操作</h4><p>JavaScript的位运算的速度其实是非常快的，你可以尽管用它来做一些必要的运算。</p>
+<h4 id="原生方法"><a href="#原生方法" class="headerlink" title="原生方法"></a>原生方法</h4><p>无论你的JavaScript代码如何优化，都永远不会比JavaScript引擎提供的原生方法更快。当有原生方法可用时，尽量使用它们。特别是数学运算和DOM操作。</p>
+<h3 id="第九章-构建并部署高性能JavaScript应用"><a href="#第九章-构建并部署高性能JavaScript应用" class="headerlink" title="第九章 构建并部署高性能JavaScript应用"></a>第九章 构建并部署高性能JavaScript应用</h3><h4 id="合并多个JavaScript文件"><a href="#合并多个JavaScript文件" class="headerlink" title="合并多个JavaScript文件"></a>合并多个JavaScript文件</h4><p>将多个JavaScript文件合并为一个文件以减少HTTP请求数。</p>
+<h4 id="预处理JavaScript文件"><a href="#预处理JavaScript文件" class="headerlink" title="预处理JavaScript文件"></a>预处理JavaScript文件</h4><p>预处理你的JavaScript源文件并不会让应用变得更快，但它允许你做些其他事情，例如有条件地插入测试代码，来衡量你的应用程序的性能。</p>
+<h4 id="JavaScrip压缩"><a href="#JavaScrip压缩" class="headerlink" title="JavaScrip压缩"></a>JavaScrip压缩</h4><p>JavaScript压缩是指把JavaScript文件中所有与运行无关的部分进行剥离的过程。剥离的内容包括注释和不必要的空白字符。</p>
+<h4 id="JavaScript的HTTP压缩"><a href="#JavaScript的HTTP压缩" class="headerlink" title="JavaScript的HTTP压缩"></a>JavaScript的HTTP压缩</h4><p>当Web浏览器请求一个资源时，它通常会发送一个HTTP头来告诉服务器它支持哪种编码类型，这个信息主要用来压缩文件以获得更快的下载。</p>
+<p><code>Accept-Eecoding</code>通常包括<code>gzip</code>，<code>compress</code>,<code>deflate</code>,<code>identiry</code>。</p>
+<h4 id="使用内容分发网络（CDN）"><a href="#使用内容分发网络（CDN）" class="headerlink" title="使用内容分发网络（CDN）"></a>使用内容分发网络（CDN）</h4><p>CDN通过向地理位置最近的用户传输内容，极大的减少网络延时。</p>
+<p>你可以自建CDN或者使用第三方CDN服务。</p>
+<h3 id="第十章-工具"><a href="#第十章-工具" class="headerlink" title="第十章 工具"></a>第十章 工具</h3><p>性能分析工具：<a href="https://yuilibrary.com/" target="_blank" rel="noopener">YUI Profiler</a></p>
+<p>网站性能检测工具：<a href="https://www.pingdom.com/" target="_blank" rel="noopener">Page Speed</a></p>
+<p>HTTP代理调试工具：<a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener">Fibbler</a></p>
+<p>工具的作用：</p>
+<ul>
+<li><p>使用网络分析工具找出加载脚本和页面中其他资源的瓶颈，这会帮助你决定哪些脚本需要延迟加载，或者需要进一步分析。</p>
+</li>
+<li><p>尽管传统的经验告诉我们要减少HTTP请求数，但把脚本尽可能延迟加载可以加快页面的渲染速度，给用户带来更好的体验。</p>
+</li>
+<li><p>使用性能分析工具找出脚本运行过程中速度慢的地方，检查每个函数所消耗的时间，以及函数被调用的次数，通过调用栈自身提供的一些线索来找出需要集中精力优化的地方。</p>
+</li>
+</ul>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>web开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>流行语遇见文言文</title>
+    <url>/2018/12/11/%E6%B5%81%E8%A1%8C%E8%AF%AD%E9%81%87%E8%A7%81%E6%96%87%E8%A8%80%E6%96%87/</url>
+    <content><![CDATA[<h3 id="现在的流行语翻译成文言文是什么感觉？下方高能，不要太惊艳！"><a href="#现在的流行语翻译成文言文是什么感觉？下方高能，不要太惊艳！" class="headerlink" title="现在的流行语翻译成文言文是什么感觉？下方高能，不要太惊艳！"></a>现在的流行语翻译成文言文是什么感觉？下方高能，不要太惊艳！</h3><p><img src="https://image-static.segmentfault.com/256/922/2569224046-5c0f46af21e39_articlex" alt="clipboard.png"></p>
+<p><strong>文言文：</strong> </p>
+<ol>
+<li>我只想安静的做个美男子。翻译：尘世三千繁华，我且与酒拜桃花。任尔金玉琳琅良驹成双，不敌我眉间红豆朱砂。   </li>
+<li>我书读的少，你可别骗我。翻译：君莫欺我不识字，人间安得有此事。</li>
+<li>鬼知道我经历了什么。翻译：阳世之人，未解吾之千千劫也。</li>
+<li>生活不止眼前的苟且，还有诗和远方。翻译：常抱青云之志，莫但求田问舍。</li>
+<li>感觉身体被掏空。翻译：叹吾躯，已淘虚。</li>
+<li>我已经使出了洪荒之力。翻译：太古滔滔之气，一泄如此。</li>
+<li>长的丑的都睡着了，长得帅的还醒着。翻译：玉树临风前，驴骡正酣睡。</li>
+<li>认真你就输了。翻译：石火光中争何事，蜗牛角上莫认真。</li>
+<li>重要的事情说三遍。翻译：念之再三，铭之肺腑。</li>
+<li>其实我的内心是崩溃的。翻译：方寸淆乱，灵台崩摧。</li>
+<li>你们城里人真会玩。翻译：都邑之民，何其善戏。</li>
+<li>吓死宝宝了。翻译：妙哉此言，足堪唬弄婴孩。</li>
+<li>我单方面宣布和谁谁谁结婚。翻译：愿出一家之言，以结两姓之好。</li>
+<li>人要是没有点理想，那和咸鱼还有什么区别？翻译：涸辙遗鲋，旦暮成枯。人而无志，与彼何殊？</li>
+<li>主要是看气质。翻译：请君莫羡解花语，腹有诗书气自华。</li>
+<li>人与人之间的基本信任呢？翻译：长恨人心不如水，等闲平地起波澜。</li>
+<li>这届人民不行。翻译：近世愚民，乱我君臣。</li>
+<li>来啊，互相伤害啊！翻译：招尔互攻，相损相从。</li>
+<li>每天都被自己帅到睡不着。翻译：玉树临风美少年，揽镜自顾夜不眠。</li>
+<li>老司机带带我。翻译：太仆老识途，携我同游乎？<br><img src="https://image-static.segmentfault.com/151/320/1513207472-5c0f4965157f3_articlex" alt="clipboard.png"></li>
+<li>没有想到你是这样的人！翻译：未知汝乃如此之人哉！</li>
+<li>辣眼睛。翻译：以目尝之，其味甚辛。</li>
+<li>当时我就懵逼了。翻译：余顿怔怔，魂散无声。</li>
+<li>这东西太重要，我要上交给国家。翻译：国之重器，当奉朝廷。</li>
+<li>我带着你，你带着钱。翻译：执子之手，子执资斧。</li>
+<li>有钱，就是任性。翻译：家有千金，行止由心。</li>
+<li>你这么牛逼咋不上天呢？翻译：阁下何不同风起，扶摇直上九万里？</li>
+<li>世界那么大，我想去看看。翻译：天地玄黄，宇宙洪荒。愿泛浮萍，从容漂洋。</li>
+<li>你脸可真大。翻译：君额上似可跑马。</li>
+<li>我喜欢的人不喜欢我。翻译：我心向水，君心向山。</li>
+<li>秀恩爱，死得快。翻译：爱而不藏，自取其亡。</li>
+<li>沉默不都是金子，有时候还可能是孙子。翻译：圣人不言如桃李，闲人不言若木鸡。</li>
+<li>宝宝心里苦，但宝宝不说。翻译：孺子含辛，隐忍不嗔。</li>
+<li>明明可以靠脸吃饭，偏偏要靠才华。翻译：中华儿女多奇志，不爱红装爱才智。</li>
+</ol>
+<p>今天就到这里吧，以后和别人交流的时候尝试用一下，保证不被人打死。<br>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>文言文</category>
+      </categories>
+      <tags>
+        <tag>流行语</tag>
+        <tag>文化碰撞</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdowwn应用范围及语法规范</title>
+    <url>/2018/12/11/Markdowwn%E5%BA%94%E7%94%A8%E8%8C%83%E5%9B%B4%E5%8F%8A%E8%AF%AD%E6%B3%95%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[<h1 id="Markdown应用范围及语法规范"><a href="#Markdown应用范围及语法规范" class="headerlink" title="Markdown应用范围及语法规范"></a>Markdown应用范围及语法规范</h1><hr>
+<p>使用 Markdown 我们可以：</p>
+<blockquote>
+<ul>
+<li>整理知识，学习笔记</li>
+<li>发布日记，杂文，所见所想</li>
+<li>撰写发布技术文稿（代码支持）</li>
+<li>撰写发布学术论文（LaTeX 公式支持）</li>
+</ul>
+</blockquote>
+<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<hr>
+<h2 id="什么是-Markdown"><a href="#什么是-Markdown" class="headerlink" title="什么是 Markdown"></a>什么是 Markdown</h2><p>Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong> 或者 <em>斜体</em> 某些文字，更棒的是，它还可以</p>
+<h3 id="制作一份待办事宜-Todo-列表"><a href="#制作一份待办事宜-Todo-列表" class="headerlink" title="制作一份待办事宜 Todo 列表"></a>制作一份待办事宜 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#13-待办事宜-todo-列表" target="_blank" rel="noopener">Todo 列表</a></h3><ul>
+<li><input disabled="" type="checkbox"> 支持以 PDF 格式导出文稿</li>
+<li><input disabled="" type="checkbox"> 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率</li>
+<li><input checked="" disabled="" type="checkbox"> 新增 Todo 列表功能</li>
+<li><input checked="" disabled="" type="checkbox"> 修复 LaTex 公式渲染问题</li>
+<li><input checked="" disabled="" type="checkbox"> 新增 LaTex 公式编号功能</li>
+</ul>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>标记语言</tag>
+        <tag>Markdown语法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用hexo d 报错</title>
+    <url>/2018/11/13/%E4%BD%BF%E7%94%A8hexo%20d%20%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h3 id="使用hexo-d-提示You-should-configure-deployment-settings-in-config-yml-first"><a href="#使用hexo-d-提示You-should-configure-deployment-settings-in-config-yml-first" class="headerlink" title="使用hexo d 提示You should configure deployment settings in _config.yml first!"></a>使用hexo d 提示You should configure deployment settings in _config.yml first!</h3><h5 id="问题-使用hexo-d-提示You-should-configure-deployment-settings-in-config-yml-first"><a href="#问题-使用hexo-d-提示You-should-configure-deployment-settings-in-config-yml-first" class="headerlink" title="问题: 使用hexo d 提示You should configure deployment settings in _config.yml first!"></a>问题: 使用hexo d 提示You should configure deployment settings in _config.yml first!</h5><h5 id="Available-deployer-plugins"><a href="#Available-deployer-plugins" class="headerlink" title="Available deployer plugins:"></a>Available deployer plugins:</h5><h5 id="git"><a href="#git" class="headerlink" title="git"></a>git</h5><h5 id="For-more-help-you-can-check-the-online-docs-http-hexo-io"><a href="#For-more-help-you-can-check-the-online-docs-http-hexo-io" class="headerlink" title="For more help, you can check the online docs: http://hexo.io/"></a>For more help, you can check the online docs: <a href="http://hexo.io/" target="_blank" rel="noopener">http://hexo.io/</a></h5><h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题:"></a>解决问题:</h3><h5 id="1-排查-gt-是否安装一下hexo-deployer-git这个模块没有安装-npm-install-hexo-deployer-git-–save使用指令安装"><a href="#1-排查-gt-是否安装一下hexo-deployer-git这个模块没有安装-npm-install-hexo-deployer-git-–save使用指令安装" class="headerlink" title="1.排查-&gt;是否安装一下hexo-deployer-git这个模块没有安装:npm install hexo-deployer-git –save使用指令安装"></a>1.排查-&gt;是否安装一下hexo-deployer-git这个模块没有安装:npm install hexo-deployer-git –save使用指令安装</h5><h5 id="2-排查-gt-config-yml-这个文件的deploy写了没有-写全了没有我的就是因为-config-yml中deploy下的type等前面没有空格导致。。。。。"><a href="#2-排查-gt-config-yml-这个文件的deploy写了没有-写全了没有我的就是因为-config-yml中deploy下的type等前面没有空格导致。。。。。" class="headerlink" title="2.排查-&gt;_config.yml 这个文件的deploy写了没有;写全了没有我的就是因为_config.yml中deploy下的type等前面没有空格导致。。。。。"></a>2.排查-&gt;_config.yml 这个文件的deploy写了没有;写全了没有我的就是因为_config.yml中deploy下的type等前面没有空格导致。。。。。</h5><h5 id="以下为正确的写法-图片"><a href="#以下为正确的写法-图片" class="headerlink" title="以下为正确的写法(图片):"></a>以下为正确的写法(图片):</h5><p><img src="https://s1.ax1x.com/2018/11/13/iObz90.jpg" alt="iObz90.jpg"></p>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo报错</tag>
+        <tag>建站经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 踩坑</title>
+    <url>/2018/04/27/Hexo%20%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<h3 id="hexo-部署到GitHub时报错"><a href="#hexo-部署到GitHub时报错" class="headerlink" title="hexo 部署到GitHub时报错"></a>hexo 部署到GitHub时报错</h3><p><img src="https://s1.ax1x.com/2018/11/13/iObKTs.png" alt="iObKTs.png"></p>
+<h5 id="ERROR-Process-failed-about-index-md-TypeError-Cannot-read-property-‘utcOffset’-of-null"><a href="#ERROR-Process-failed-about-index-md-TypeError-Cannot-read-property-‘utcOffset’-of-null" class="headerlink" title="ERROR Process failed: about/index.md TypeError: Cannot read property ‘utcOffset’ of null"></a>ERROR Process failed: about/index.md TypeError: Cannot read property ‘utcOffset’ of null</h5><h5 id="折腾了半天发现原来站点的配置文件的timezone也就是时区必须要和主题的的配置文件一直，把这两个文件下的timezone都设为Asia-Shanghai就解决了"><a href="#折腾了半天发现原来站点的配置文件的timezone也就是时区必须要和主题的的配置文件一直，把这两个文件下的timezone都设为Asia-Shanghai就解决了" class="headerlink" title="折腾了半天发现原来站点的配置文件的timezone也就是时区必须要和主题的的配置文件一直，把这两个文件下的timezone都设为Asia/Shanghai就解决了"></a>折腾了半天发现原来站点的配置文件的timezone也就是时区必须要和主题的的配置文件一直，把这两个文件下的timezone都设为Asia/Shanghai就解决了</h5><p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo报错</tag>
+        <tag>建站经验</tag>
+      </tags>
+  </entry>
+</search>
