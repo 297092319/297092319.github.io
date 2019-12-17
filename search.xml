@@ -1,6 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>用Ajax登录时检测用户名是否存在</title>
+    <url>/2019/12/17/%E7%94%A8Ajax%E7%99%BB%E5%BD%95%E6%97%B6%E6%A3%80%E6%B5%8B%E7%94%A8%E6%88%B7%E5%90%8D%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8/</url>
+    <content><![CDATA[<h2 id="用Ajax登录时检测用户名是否存在"><a href="#用Ajax登录时检测用户名是否存在" class="headerlink" title="用Ajax登录时检测用户名是否存在"></a>用Ajax登录时检测用户名是否存在</h2><h2 id="1-login-html"><a href="#1-login-html" class="headerlink" title="1.login.html"></a>1.login.html</h2><pre><code>    &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;title&gt;login&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div align=&quot;center&quot;&gt;
+            &lt;h3&gt;用户登录&lt;/h3&gt;
+        &lt;form action=&quot;check.php&quot; method=&quot;post&quot;&gt;
+            &lt;p&gt;账号：&lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot;&gt;&lt;/p&gt;&lt;span id=&quot;warning&quot; style=&quot;color: red;&quot;&gt;&lt;/span&gt;
+            &lt;p&gt;密码：&lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot;&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;submit&quot; id=&quot;submit&quot;&gt;&lt;/p&gt;
+            &lt;p id=&quot;tips&quot;&gt;&lt;/p&gt;
+        &lt;/form&gt;
+        &lt;/div&gt;        
+    &lt;/body&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var user = document.getElementById(&apos;name&apos;);
+        user.onblur= function(){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 &amp;&amp; xhr.status == 200){
+                    if(xhr.responseText == 0){//当前用户不存在
+                        var warning = document.getElementById(&apos;warning&apos;);
+                        warning.innerHTML=&quot;新用户请先注册再登录！&quot;;
+                        document.getElementById(&apos;submit&apos;).disabled = true;
+                    }
+
+                }
+            }
+            var user = document.getElementById(&apos;name&apos;).value;
+            var password = document.getElementById(&apos;password&apos;).value;
+            var data = &apos;name=&apos;+user+&apos;&amp;password=&apos;+password;
+            var url = &apos;check.php&apos;;
+            xhr.open(&apos;post&apos;,url,true);
+
+            xhr.setRequestHeader(&apos;content-type&apos;,&apos;application/x-www-form-urlencoded&apos;);//设置请求头
+
+            xhr.send(data);
+
+            var submit = document.getElementById(&apos;submit&apos;);
+            submit.onclick = function(){
+                var tips = document.getElementById(&apos;tips&apos;);
+                tips.innerHTML = &apos;验证通过&apos;;
+                return false;
+            }
+        }
+    &lt;/script&gt;
+&lt;/html&gt;</code></pre><h2 id="2-check-php"><a href="#2-check-php" class="headerlink" title="2.check.php"></a>2.check.php</h2><pre><code>    &lt;?php
+$userList = [&apos;peter&apos;,&apos;jack&apos;,&apos;mike&apos;];//已注册用户
+$user = isset($_POST[&apos;name&apos;]) ? $_POST[&apos;name&apos;] : &apos;&apos;;
+echo in_array($user,$userList) ? 1 : 0;
+?&gt;</code></pre><h2 id="3-运行结果："><a href="#3-运行结果：" class="headerlink" title="3.运行结果："></a>3.运行结果：</h2><p>点击submit显示结果<br><img src="https://s2.ax1x.com/2019/12/17/QIUd8U.png" alt="QIUd8U.png"><br>刷新再点击submit<br><img src="https://s2.ax1x.com/2019/12/17/QIUf2D.png" alt="QIUf2D.png"><br>作者：<a href="https://www.sitwo.club">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>ajax</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用Ajax完成POST请求</title>
+    <url>/2019/12/17/%E7%94%A8Ajax%E5%AE%8C%E6%88%90POST%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<h2 id="用Ajax完成POST请求"><a href="#用Ajax完成POST请求" class="headerlink" title="用Ajax完成POST请求"></a>用Ajax完成POST请求</h2><h2 id="1-login-html"><a href="#1-login-html" class="headerlink" title="1.login.html"></a>1.login.html</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;title&gt;login&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div align=&quot;center&quot;&gt;
+            &lt;h3&gt;用户登录&lt;/h3&gt;
+        &lt;form action=&quot;check.php&quot; method=&quot;post&quot;&gt;
+            &lt;p&gt;账号：&lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot;&gt;&lt;/p&gt;
+            &lt;p&gt;密码：&lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot;&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;submit&quot; id=&quot;submit&quot;&gt;&lt;/p&gt;
+            &lt;p id=&quot;tips&quot;&gt;&lt;/p&gt;
+        &lt;/form&gt;
+        &lt;/div&gt;        
+    &lt;/body&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var submit = document.getElementById(&apos;submit&apos;);
+        submit.onclick = function(){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 &amp;&amp; xhr.status == 200){
+                    console.log(xhr.responseText);
+                    var json = JSON.parse(xhr.responseText);
+                    var tips = document.getElementById(&apos;tips&apos;);
+                    tips.innerHTML = &apos;欢迎用户&apos;+json.name+&apos;再次回来&apos;;                    
+                }
+            }
+            var user = document.getElementById(&apos;name&apos;).value;
+            var password = document.getElementById(&apos;password&apos;).value;
+            var data = &apos;name=&apos;+user+&apos;&amp;password=&apos;+password;
+            var url = &apos;check.php&apos;;
+            xhr.open(&apos;post&apos;,url,true);
+
+            xhr.setRequestHeader(&apos;content-type&apos;,&apos;application/x-www-form-urlencoded&apos;);//设置请求头
+
+            xhr.send(data);
+            return false;//禁止提交按钮的默认行为
+        }
+    &lt;/script&gt;
+&lt;/html&gt;</code></pre><h2 id="2-check-php"><a href="#2-check-php" class="headerlink" title="2.check.php"></a>2.check.php</h2><pre><code>&lt;?php
+echo json_encode($_POST);
+?&gt;</code></pre><h2 id="3-运行结果："><a href="#3-运行结果：" class="headerlink" title="3.运行结果："></a>3.运行结果：</h2><p>点击按钮显示结果<br><img src="https://s2.ax1x.com/2019/12/17/QItxfS.png" alt="QItxfS.png"><br>作者：<a href="https://www.sitwo.club">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>ajax</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用Ajax完成GET请求</title>
+    <url>/2019/12/17/%E7%94%A8Ajax%E5%AE%8C%E6%88%90GET%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<h2 id="用Ajax完成GET请求"><a href="#用Ajax完成GET请求" class="headerlink" title="用Ajax完成GET请求"></a>用Ajax完成GET请求</h2><h2 id="1-login-html"><a href="#1-login-html" class="headerlink" title="1.login.html"></a>1.login.html</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;login&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div align=&quot;center&quot;&gt;
+        &lt;h3&gt;用户登录&lt;/h3&gt;
+    &lt;form action=&quot;check.php&quot; method=&quot;get&quot;&gt;
+        &lt;p&gt;账号：&lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot;&gt;&lt;/p&gt;
+        &lt;p&gt;密码：&lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;submit&quot; id=&quot;submit&quot;&gt;&lt;/p&gt;
+        &lt;p id=&quot;tips&quot;&gt;&lt;/p&gt;
+    &lt;/form&gt;
+    &lt;/div&gt;        
+&lt;/body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var submit = document.getElementById(&apos;submit&apos;);
+    submit.onclick = function(){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 &amp;&amp; xhr.status == 200){
+                console.log(xhr.responseText);
+                var json = JSON.parse(xhr.responseText);
+                var tips = document.getElementById(&apos;tips&apos;);
+                tips.innerHTML = &apos;欢迎用户&apos;+json.name+&apos;再次回来&apos;;                    
+            }
+        }
+        var user = document.getElementById(&apos;name&apos;).value;
+        var password = document.getElementById(&apos;password&apos;).value;
+        var url = &apos;check.php?name=&apos;+user+&apos;&amp;password=&apos;+password;
+        xhr.open(&apos;get&apos;,url,true);
+        xhr.send(null);
+        return false;//禁止提交按钮的默认行为
+    }
+&lt;/script&gt;
+&lt;/html&gt;</code></pre><h2 id="2-check-php"><a href="#2-check-php" class="headerlink" title="2.check.php"></a>2.check.php</h2><pre><code>&lt;?php
+echo json_encode($_GET);
+?&gt;</code></pre><h2 id="3-运行结果："><a href="#3-运行结果：" class="headerlink" title="3.运行结果："></a>3.运行结果：</h2><p>点击按钮显示结果<br><img src="https://s2.ax1x.com/2019/12/17/QItxfS.png" alt="QItxfS.png"><br>作者：<a href="https://www.sitwo.club">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>ajax</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ajax脚本基本架构</title>
+    <url>/2019/12/17/Ajax%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84/</url>
+    <content><![CDATA[<h2 id="Ajax脚本基本架构"><a href="#Ajax脚本基本架构" class="headerlink" title="Ajax脚本基本架构"></a>Ajax脚本基本架构</h2><h2 id="1-index-html"><a href="#1-index-html" class="headerlink" title="1.index.html"></a>1.index.html</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;title&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;button&gt;显示欢迎词&lt;/button&gt;
+        &lt;h2&gt;&lt;/h2&gt;
+    &lt;/body&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var btn = document.getElementsByTagName(&apos;button&apos;)[0];
+        btn.onclick = function(){
+            var xhr = new XMLHttpRequest();//创建Ajax对象
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 4 &amp;&amp; xhr.status == 200){
+                    var h2 = document.getElementsByTagName(&apos;h2&apos;)[0];
+                    h2.innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open(&apos;get&apos;,&apos;test.php&apos;,true);
+            xhr.send(null);
+        }
+    &lt;/script&gt;
+&lt;/html&gt;</code></pre><h2 id="2-test-php"><a href="#2-test-php" class="headerlink" title="2.test.php"></a>2.test.php</h2><pre><code>&lt;?php
+echo &quot;欢迎来到司徒大官人&quot;;
+?&gt;</code></pre><h2 id="3-运行结果："><a href="#3-运行结果：" class="headerlink" title="3.运行结果："></a>3.运行结果：</h2><p>点击按钮显示结果<br><img src="https://s2.ax1x.com/2019/12/17/QIJstU.png" alt="QIJstU.png"><br>作者：<a href="https://www.sitwo.club">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>ajax</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>迁移hexo</title>
     <url>/2019/11/29/%E8%BF%81%E7%A7%BBhexo/</url>
     <content><![CDATA[<h2 id="基础环境搭建"><a href="#基础环境搭建" class="headerlink" title="基础环境搭建"></a>基础环境搭建</h2><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>电脑中已经安装了<code>git</code>和<code>node.js</code>，直接随便找个文件夹在 <code>git bash</code> 中执行 <code>npm install -g hexo-cli</code>，这一步是安装<code>hexo</code>。<br>检测<code>hexo</code>是否成功安装，在 <code>git bash</code> 执行 <code>hexo v</code> 看到<code>hexo</code>的版本号就说明安装成功了。</p>
@@ -20,7 +233,7 @@
 <p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
 ]]></content>
       <categories>
-        <category>-Hexo</category>
+        <category>Hexo</category>
       </categories>
       <tags>
         <tag>hexo报错</tag>
@@ -126,8 +339,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>ajax</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
