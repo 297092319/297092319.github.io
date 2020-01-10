@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>一张表搞清楚php is_null、empty、isset的区别</title>
+    <url>/2020/01/10/is-null%E3%80%81empty%E3%80%81isset%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="一张表搞清楚php-is-null、empty、isset的区别"><a href="#一张表搞清楚php-is-null、empty、isset的区别" class="headerlink" title=" 一张表搞清楚php is_null、empty、isset的区别"></a> 一张表搞清楚php is_null、empty、isset的区别</h1><ul>
+<li><p>isset 判断变量是否已存在</p>
+</li>
+<li><p>empty 判断变量是否为空或为0</p>
+</li>
+<li><p>is_null 判断变量是否为NULL</p>
+</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2020/01/10/lhJPmQ.png" alt="lhJPmQ.png"></p>
+<p>作者：<a href="https://www.sitwo.club/">司徒静峰</a></p>
+]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>用Ajax登录时检测用户名是否存在</title>
     <url>/2019/12/17/%E7%94%A8Ajax%E7%99%BB%E5%BD%95%E6%97%B6%E6%A3%80%E6%B5%8B%E7%94%A8%E6%88%B7%E5%90%8D%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8/</url>
     <content><![CDATA[<h2 id="用Ajax登录时检测用户名是否存在"><a href="#用Ajax登录时检测用户名是否存在" class="headerlink" title="用Ajax登录时检测用户名是否存在"></a>用Ajax登录时检测用户名是否存在</h2><h2 id="1-login-html"><a href="#1-login-html" class="headerlink" title="1.login.html"></a>1.login.html</h2><pre><code>    &lt;!DOCTYPE html&gt;
