@@ -83,8 +83,8 @@ echo in_array($user,$userList) ? 1 : 0;
         <category>ajax</category>
       </categories>
       <tags>
-        <tag>php</tag>
         <tag>ajax</tag>
+        <tag>php</tag>
       </tags>
   </entry>
   <entry>
@@ -139,8 +139,8 @@ echo json_encode($_POST);
         <category>ajax</category>
       </categories>
       <tags>
-        <tag>php</tag>
         <tag>ajax</tag>
+        <tag>php</tag>
       </tags>
   </entry>
   <entry>
@@ -191,8 +191,8 @@ echo json_encode($_GET);
         <category>ajax</category>
       </categories>
       <tags>
-        <tag>php</tag>
         <tag>ajax</tag>
+        <tag>php</tag>
       </tags>
   </entry>
   <entry>
@@ -230,8 +230,8 @@ echo &quot;欢迎来到司徒大官人&quot;;
         <category>ajax</category>
       </categories>
       <tags>
-        <tag>php</tag>
         <tag>ajax</tag>
+        <tag>php</tag>
       </tags>
   </entry>
   <entry>
@@ -360,8 +360,8 @@ echo &quot;欢迎来到司徒大官人&quot;;
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>ajax</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
